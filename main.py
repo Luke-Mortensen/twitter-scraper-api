@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/scrape', methods=['POST'])
 def scrape_tweets():
-    data = request.json
+    data = request.get_json()
     query = data.get('query', '')
     max_results = int(data.get('limit', 10))
 
@@ -24,4 +24,5 @@ def scrape_tweets():
 
     return jsonify(tweets)
 
-app.run(host='0.0.0.0', port=8080)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=10000)
